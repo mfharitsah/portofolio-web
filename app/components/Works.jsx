@@ -3,14 +3,15 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 
 const Works = ({ darkStatus }) => {
-  const [clickedIndex, setClickedIndex] = useState(null); // Menyimpan indeks kartu yang diklik
+  const [clickedIndex, setClickedIndex] = useState(null);
+  const [seeMore, setSeeMore] = useState(false);
 
   const toggleClick = (index) => {
-    setClickedIndex(clickedIndex === index ? null : index); // Toggle kartu yang diklik
+    setClickedIndex(clickedIndex === index ? null : index); 
   };
 
   return (
-    <div id='my-works' className='w-full px-[15%] py-10 scroll-mt-32 min-h-screen bg-[url("/footer-bg-color.png")] dark:bg-none'>
+    <div id='my-works' className='w-full px-[15%] py-10 scroll-mt-32 min-h-screen bg-[url("/footer-bg-color.png")] bg-no-repeat bg-center dark:bg-none bg-[length:90%_auto]'>
       <p className='text-center mb-2 text-lg font-lora'>Portfolio</p>
       <p className='text-center text-4xl lg:text-5xl font-lora'>My Latest Work</p>
       <p className='text-justify lg:text-center text-sm lg:text-base max-w-2xl mx-auto mt-5 mb-12 font-lora'>
@@ -19,7 +20,8 @@ const Works = ({ darkStatus }) => {
         nemo?
       </p>
 
-      <div className='flex flex-col lg:flex-row gap-5 justify-center items-center'>
+      {/* <div className='flex flex-col lg:flex-row gap-5 justify-center items-center'> */}
+      <div className={`grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center items-center transition-[max-height] duration-1000 ease-in-out overflow-hidden ${seeMore ? 'max-h-[135rem] md:max-h-[152rem] lg:max-h-[50rem]' : 'max-h-[66rem] md:max-h-[75rem] lg:max-h-[24rem]'}`}>
         {workData.map((project, index) => (
           <div
             key={index}
@@ -49,10 +51,10 @@ const Works = ({ darkStatus }) => {
         ))}
       </div>
       <div className='flex justify-center mt-10'>
-        <a href="/harris-resume.pdf" className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 hover:bg-lightHover dark:hover:bg-darkHover duration-300'>
-          see more
-          <Image src={darkStatus ? assets.right_arrow_white : assets.right_arrow_bold} alt='' className='w-4' />
-        </a>
+        <button className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 hover:bg-lightHover dark:hover:bg-darkHover duration-300' onClick={() => setSeeMore(!seeMore)}>
+          {seeMore ? "see less" : "see more"}
+          <Image src={darkStatus ? assets.right_arrow_white : assets.right_arrow_bold} alt='' className={`w-4 duration-300 ${seeMore ? '-rotate-90' : 'rotate-90'}`} />
+        </button>
       </div>
     </div>
   );

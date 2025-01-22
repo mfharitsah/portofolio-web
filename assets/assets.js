@@ -121,19 +121,41 @@ export const workData = [
     github: 'https://github.com/mfharitsah/Technoskill-AdminDashboard'
   },
   {
-    title: 'IME FTUI Web Profile',
+    title: 'IME FTUI Web',
     description: 'Frontend Web',
     bgImage: ime_prev.src,
-    full_desc: 'Employee Tracker is a web-based application that helps companies manage their employees, track their attendance, and monitor their performance.',
+    full_desc: "This website serves as a platform to deliver IME FTUI's services and information effectively to its audience. It ensures streamlined communication and access to essential resources for the DTE students.",
     github: 'https://github.com/mfharitsah/Website-IMEFTUI2024'
   },
   {
     title: 'JBus',
     description: 'Fullstack Mobile App',
     bgImage: jbus_prev.src,
+    full_desc: 'JBus is a mobile Android application designed for bus ticket booking. It features an intuitive search functionality allowing users to find tickets based on bus name (argo), destination, and departure date.',
+    github: 'https://github.com/mfharitsah/JBus'
+  },
+  {
+    title: 'RentLab',
+    description: 'Fullstack Web',
+    bgImage: jbus_prev.src,
+    full_desc: 'RentLab is a web application for streamlining laboratory equipment loans at FTUI, allowing users to request items with time limits and receive approvals. It also includes an admin dashboard to manage availability and loan requests.',
+    github: 'https://github.com/mfharitsah/JBus'
+  },
+  {
+    title: 'Exercise FTUI Web',
+    description: 'Frontend Web',
+    bgImage: jbus_prev.src,
     full_desc: 'Employee Tracker is a web-based application that helps companies manage their employees, track their attendance, and monitor their performance.',
     github: 'https://github.com/mfharitsah/JBus'
   },
+  {
+    title: 'UIHelp',
+    description: 'Fullstack Web',
+    bgImage: jbus_prev.src,
+    full_desc: 'Employee Tracker is a web-based application that helps companies manage their employees, track their attendance, and monitor their performance.',
+    github: 'https://github.com/mfharitsah/JBus'
+  },
+  
 ]
 
 // export const serviceData = [
