@@ -9,7 +9,7 @@ const Profile = ( {darkStatus} ) => {
       <p className='text-center mb-2 text-lg lg:text-xl font-lora'>Introduction</p>
       <p className='text-center text-4xl lg:text-5xl font-lora'>About Me</p>
 
-      <div className='w-full h-fit flex flex-col items-center lg:items-start lg:flex-row gap-20 my-8 lg:my-20'>
+      <div className='w-full h-fit flex flex-col items-center lg:items-start lg:flex-row gap-28 lg:gap-20 my-8 lg:my-20'>
         <div className='w-44 lg:w-80 h-40 lg:h-52 relative '>
             <Image src={assets.harris_rectangle} alt='user' className='w-full bg-cover rounded-3xl dark:border-2 dark:border-white/50' />
         </div>
