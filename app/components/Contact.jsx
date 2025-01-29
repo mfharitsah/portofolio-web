@@ -1,6 +1,7 @@
 import { assets } from '@/assets/assets'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { motion } from 'motion/react'
 
 const Contact = () => {
 
@@ -46,22 +47,49 @@ const Contact = () => {
     return (
         <div className='w-full bg-[url("/footer-bg-color.png")] bg-no-repeat bg-center dark:bg-none bg-[length:90%_auto] px-[15%] flex flex-col justify-center items-center gap-5 py-10 scroll-mt-24 lg:scroll-mt-40' id='contact'>
             <div className='w-full flex flex-col items-center text-center'>
-                <p className='text-center mb-2 text-lg lg:text-xl font-lora'>Connect with me</p>
-                <p className='text-center text-4xl lg:text-5xl font-lora'>Get In Touch</p>
-                <p className='font-lora text-justify w-full lg:w-1/2 lg:text-center text-gray-600 mt-3 dark:text-white/80'>I'd like to hear from you!If you have any questions, comments, or feedback, please tell me through the form below.</p>
+                <motion.div
+                    initial={{ y: -20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                    <p className='text-center mb-2 text-lg lg:text-xl font-lora'>Connect with me</p>
+                    <p className='text-center text-4xl lg:text-5xl font-lora'>Get In Touch</p>
+                </motion.div>
+
+                <motion.p
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className='font-lora text-justify w-full lg:w-1/2 lg:text-center text-gray-600 mt-3 dark:text-white/80'>I'd like to hear from you!If you have any questions, comments, or feedback, please tell me through the form below.</motion.p>
             </div>
 
             <form onSubmit={onSubmit} action="" className='w-full flex flex-col items-center gap-8 mt-10'>
                 <div className='flex flex-col md:flex-row justify-between w-full lg:w-3/4 gap-5'>
-                    <input type="text" className='w-full md:w-1/2 border-[0.5px] border-gray-400 rounded-md px-2 py-4 dark:bg-darkHover/30 dark:border-white/90' placeholder='Enter your name' name='name' />
-                    <input type="text" className='w-full md:w-1/2 border-[0.5px] border-gray-400 rounded-lg px-2 py-3 dark:bg-darkHover/30 dark:border-white/90' placeholder='Enter your email' name='email' />
+                    <motion.input
+                        initial={{ x: -20, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        type="text" className='w-full md:w-1/2 border-[0.5px] border-gray-400 rounded-md px-2 py-4 dark:bg-darkHover/30 dark:border-white/90' placeholder='Enter your name' name='name' />
+                    <motion.input
+                        initial={{ x: 20, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        type="text" className='w-full md:w-1/2 border-[0.5px] border-gray-400 rounded-lg px-2 py-3 dark:bg-darkHover/30 dark:border-white/90' placeholder='Enter your email' name='email' />
                 </div>
-                <textarea type="text" rows={7} className='w-full lg:w-3/4 border-[0.5px] border-gray-400 rounded-lg px-2 py-4 dark:bg-darkHover/30 dark:border-white/90' placeholder='Enter your message' name='message' />
+                <motion.textarea
+                    initial={{ x: 20, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    type="text" rows={7} className='w-full lg:w-3/4 border-[0.5px] border-gray-400 rounded-lg px-2 py-4 dark:bg-darkHover/30 dark:border-white/90' placeholder='Enter your message' name='message' />
 
-                <button type='submit' className='px-10 py-3 border rounded-full border-white bg-black hover:bg-black/80 text-white flex items-center gap-2 dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover duration-300'>
+                <motion.button
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 0.1, delay: 0.3 }}
+                    type='submit' className='px-10 py-3 border rounded-full border-white bg-black hover:bg-black/80 text-white flex items-center gap-2 dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover duration-300'>
                     Submit now
                     <Image src={assets.right_arrow_white} alt='' className='w-4' />
-                </button>
+                </motion.button>
                 <p className={`italic text-gray-600 ${!sendValid && 'text-red-600'}`}>{result}</p>
             </form>
 

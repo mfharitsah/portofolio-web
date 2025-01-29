@@ -1,29 +1,44 @@
 import { assets, workData } from '@/assets/assets';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { motion } from 'motion/react'
 
 const Works = ({ darkStatus }) => {
   const [clickedIndex, setClickedIndex] = useState(null);
   const [seeMore, setSeeMore] = useState(false);
 
   const toggleClick = (index) => {
-    setClickedIndex(clickedIndex === index ? null : index); 
+    setClickedIndex(clickedIndex === index ? null : index);
   };
 
   return (
     <div id='my-works' className='w-full px-[15%] py-10 scroll-mt-32 min-h-screen bg-[url("/footer-bg-color.png")] bg-no-repeat bg-center dark:bg-none bg-[length:90%_auto]'>
-      <p className='text-center mb-2 text-lg font-lora'>Portfolio</p>
-      <p className='text-center text-4xl lg:text-5xl font-lora'>My Latest Work</p>
-      <p className='text-justify lg:text-center text-sm lg:text-base max-w-2xl mx-auto mt-5 mb-12 font-lora'>
+      <motion.p
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className='text-center mb-2 text-lg font-lora'>Portfolio</motion.p>
+      <motion.p
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className='text-center text-4xl lg:text-5xl font-lora'>My Latest Work</motion.p>
+      <motion.p
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className='text-justify lg:text-center text-sm lg:text-base max-w-2xl mx-auto mt-5 mb-12 font-lora'>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tenetur quaerat exercitationem explicabo hic
         saepe illo enim est! Nam quaerat molestiae velit cum exercitationem culpa praesentium modi quibusdam delectus
         nemo?
-      </p>
+      </motion.p>
 
-      {/* <div className='flex flex-col lg:flex-row gap-5 justify-center items-center'> */}
       <div className={`grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center items-center transition-[max-height] duration-1000 ease-in-out overflow-hidden ${seeMore ? 'max-h-[135rem] md:max-h-[152rem] lg:max-h-[50rem]' : 'max-h-[66rem] md:max-h-[75rem] lg:max-h-[24rem]'}`}>
         {workData.map((project, index) => (
-          <div
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: (index / 10) + 0.3 }}
             key={index}
             style={{ backgroundImage: `url(${project.bgImage})` }}
             className="relative bg-cover bg-center w-80 max-w-2xl h-[21rem] md:h-96 md:w-96 rounded-2xl flex flex-col justify-between gap-4 p-5 dark:border-2 dark:border-white/50"
@@ -47,7 +62,7 @@ const Works = ({ darkStatus }) => {
                 <Image src={assets.right_arrow_white} alt='' className='w-3' />
               </a>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       <div className='flex justify-center mt-10'>
