@@ -45,7 +45,7 @@ const Header = () => {
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     transition={{ duration: 0.1, delay: 0.5 }}
-                    href="https://drive.google.com/file/d/1EPWlNe_BTJGU7oe7AemEIi8okpJkjVY4/view?usp=sharing" className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white hover:bg-lightHover dark:hover:bg-white/90 dark:text-black duration-300'>
+                    href="https://drive.google.com/file/d/1zI_Xeq26oeZW0-HUrlIpXH6mC-FBTRUS/view?usp=sharing" className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white hover:bg-lightHover dark:hover:bg-white/90 dark:text-black duration-300'>
                     view resume
                     <Image src={assets.download_icon} alt='' className='w-4' />
                 </motion.a>
