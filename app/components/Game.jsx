@@ -37,6 +37,7 @@ const Game = () => {
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [showFeedback, setShowFeedback] = useState(false);
     const [isAnswering, setIsAnswering] = useState(false);
+    const [showPrizeLink, setShowPrizeLink] = useState(false);
 
     useEffect(() => {
         shuffleQuestion();
@@ -55,6 +56,7 @@ const Game = () => {
         setFeedbackMessage('');
         setFeedbackImage(null);
         setIsAnswering(false);
+        setShowPrizeLink(false);
     };
 
     const handleSubmit = (e) => {
@@ -68,10 +70,12 @@ const Game = () => {
             setFeedbackMessage('✨ Benar! Selamat!');
             setShowFeedback(true);
             setIsAnswering(true);
+            setShowPrizeLink(true);
         } else {
             const newWrongAttempts = wrongAttempts + 1;
             setWrongAttempts(newWrongAttempts);
             setFeedbackImage(getRandomImage(incorrectImages));
+            setShowPrizeLink(false);
 
             if (newWrongAttempts >= 3) {
                 setFeedbackMessage('🎉 Prank! Boleh coba berkali-kali kok!');
@@ -255,24 +259,26 @@ const Game = () => {
                                 </div>
                             </motion.div>
 
-                            <motion.div
-                                initial={{ y: 10, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ duration: 0.5, delay: 0.3 }}
-                                className='text-center mb-6'
-                            >
-                                <a
-                                    href='https://app.gopay.co.id/NF8p/hxjy1dmh'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    className='inline-flex items-center gap-2 px-6 py-2 text-base md:text-lg font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 border-b-2 border-purple-500 dark:border-purple-400 hover:border-purple-600 dark:hover:border-purple-300 duration-300 transition-colors'
+                            {showPrizeLink && (
+                                <motion.div
+                                    initial={{ y: 10, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ duration: 0.5, delay: 0.3 }}
+                                    className='text-center mb-6'
                                 >
-                                    🎁 Nih hadiah buat kamu. Klik!
-                                    <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.658 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1' />
-                                    </svg>
-                                </a>
-                            </motion.div>
+                                    <a
+                                        href='https://app.gopay.co.id/NF8p/hxjy1dmh'
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                        className='inline-flex items-center gap-2 px-6 py-2 text-base md:text-lg font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 border-b-2 border-purple-500 dark:border-purple-400 hover:border-purple-600 dark:hover:border-purple-300 duration-300 transition-colors'
+                                    >
+                                        🎁 Nih hadiah buat kamu. Klik!
+                                        <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.658 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1' />
+                                        </svg>
+                                    </a>
+                                </motion.div>
+                            )}
 
                             <motion.div
                                 initial={{ scale: 0.8, opacity: 0 }}
@@ -280,7 +286,7 @@ const Game = () => {
                                 transition={{ duration: 0.5, delay: 0.4 }}
                                 className='text-center'
                             >
-                                <p className='text-3xl md:text-4xl font-lora font-bold mb-6 text-gray-900 dark:text-white'>
+                                <p className='text-xl md:text-3xl font-lora font-bold mb-6 text-gray-900 dark:text-white'>
                                     {feedbackMessage}
                                 </p>
                                 <motion.button
