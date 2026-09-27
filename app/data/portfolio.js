@@ -7,7 +7,7 @@ export const siteConfig = {
   github: 'https://github.com/mfharitsah',
   linkedin: 'https://www.linkedin.com/in/mfharitsah/',
   resume:
-    'https://drive.google.com/file/d/1zI_Xeq26oeZW0-HUrlIpXH6mC-FBTRUS/view?usp=sharing',
+    'https://drive.google.com/file/d/1wnjEgX87vdMgaE9ofYY7HZnE890ftHnj/view?usp=sharing',
 };
 
 export const navItems = [
