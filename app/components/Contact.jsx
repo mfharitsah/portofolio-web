@@ -1,100 +1,59 @@
-import { assets } from '@/assets/assets'
-import Image from 'next/image'
-import React, { useState } from 'react'
-import { motion } from 'motion/react'
+import { siteConfig } from '@/app/data/portfolio';
+import { motion } from 'motion/react';
 
 const Contact = () => {
+  return (
+    <section id="contact" className="section-shell scroll-mt-28 py-24 md:py-32">
+      <motion.div
+        initial={{ y: 28, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6 }}
+        className="relative overflow-hidden rounded-[2rem] bg-navy-950 px-6 py-16 text-white shadow-2xl shadow-blue-950/20 dark:border dark:border-blue-300/15 dark:shadow-blue-500/5 md:px-14 md:py-20"
+      >
+        <div className="absolute -right-28 -top-28 size-80 rounded-full bg-blue-500/35 blur-3xl" />
+        <div className="absolute -bottom-36 left-1/3 size-72 rounded-full bg-cyan-400/15 blur-3xl" />
+        <div className="relative max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-300">
+            Let’s connect
+          </p>
+          <h2 className="mt-4 font-lora text-4xl font-medium leading-tight tracking-[-0.04em] md:text-6xl">
+            Have a complex problem worth solving?
+          </h2>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/65">
+            I’m always open to thoughtful conversations about software
+            engineering, product challenges, and opportunities to build systems
+            that matter.
+          </p>
 
-    const [result, setResult] = useState("");
-    const [sendValid, setSendValid] = useState(true);
-
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        setResult("Sending....");
-        const formData = new FormData(event.target);
-
-        // Validasi input
-        const name = formData.get("name");
-        const email = formData.get("email");
-        const message = formData.get("message");
-
-        if (!name || !email || !message) {
-            setResult("Please fill out all fields!");
-            setSendValid(false);
-            return;
-        }
-
-        setSendValid(true);
-
-        formData.append("access_key", "775fd097-4dad-4c65-a801-1977edfb52a3");
-
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            setResult("Form Submitted Successfully");
-            event.target.reset();
-        } else {
-            console.log("Error", data);
-            setResult(data.message);
-        }
-    };
-
-    return (
-        <div className='w-full bg-[url("/footer-bg-color.png")] bg-no-repeat bg-center dark:bg-none bg-[length:90%_auto] px-[15%] flex flex-col justify-center items-center gap-5 py-10 scroll-mt-24 lg:scroll-mt-40' id='contact'>
-            <div className='w-full flex flex-col items-center text-center'>
-                <motion.div
-                    initial={{ y: -20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                    <p className='text-center mb-2 text-lg lg:text-xl font-lora'>Connect with me</p>
-                    <p className='text-center text-4xl lg:text-5xl font-lora'>Get In Touch</p>
-                </motion.div>
-
-                <motion.p
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className='font-lora text-justify w-full lg:w-1/2 lg:text-center text-gray-600 mt-3 dark:text-white/80'>I'd like to hear from you!If you have any questions, comments, or feedback, please tell me through the form below.</motion.p>
-            </div>
-
-            <form onSubmit={onSubmit} action="" className='w-full flex flex-col items-center gap-8 mt-10'>
-                <div className='flex flex-col md:flex-row justify-between w-full lg:w-3/4 gap-5'>
-                    <motion.input
-                        initial={{ x: -20, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        type="text" className='w-full md:w-1/2 border-[0.5px] border-gray-400 rounded-md px-2 py-4 dark:bg-darkHover/30 dark:border-white/90' placeholder='Enter your name' name='name' />
-                    <motion.input
-                        initial={{ x: 20, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        type="text" className='w-full md:w-1/2 border-[0.5px] border-gray-400 rounded-lg px-2 py-3 dark:bg-darkHover/30 dark:border-white/90' placeholder='Enter your email' name='email' />
-                </div>
-                <motion.textarea
-                    initial={{ x: 20, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    type="text" rows={7} className='w-full lg:w-3/4 border-[0.5px] border-gray-400 rounded-lg px-2 py-4 dark:bg-darkHover/30 dark:border-white/90' placeholder='Enter your message' name='message' />
-
-                <motion.button
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ duration: 0.1, delay: 0.3 }}
-                    type='submit' className='px-10 py-3 border rounded-full border-white bg-black hover:bg-black/80 text-white flex items-center gap-2 dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover duration-300'>
-                    Submit now
-                    <Image src={assets.right_arrow_white} alt='' className='w-4' />
-                </motion.button>
-                <p className={`italic text-gray-600 ${!sendValid && 'text-red-600'}`}>{result}</p>
-            </form>
-
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a
+              href={'mailto:' + siteConfig.email}
+              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-400/20"
+            >
+              Email me <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href={siteConfig.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
-    )
-}
+      </motion.div>
+    </section>
+  );
+};
 
-export default Contact
+export default Contact;

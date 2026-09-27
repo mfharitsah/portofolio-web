@@ -1,31 +1,36 @@
-import { assets, socialMediaData } from '@/assets/assets'
-import Image from 'next/image'
-import React from 'react'
+import { navItems, siteConfig } from '@/app/data/portfolio';
+import Link from 'next/link';
 
 const Footer = () => {
-
-    return (
-        <div className='w-full flex flex-col gap-5 justify-between mt-20 items-center px-32 lg:px-52 py-8'>
-            <div className='w-full flex flex-col items-center gap-2'>
-                <a href="#home" className='font-bold text-4xl lg:text-5xl'><span className='text-3xl lg:text-4xl font-light'>about</span>Harris<span className='text-red-700 text-4xl lg:text-5xl'>.</span></a>
-                <p className='flex gap-1 items-center'><Image src={assets.mail_icon} alt='' className='w-4' /> mfharitsah@gmail.com</p>
-
-            </div>
-            <div className='w-full h-0.5 bg-gray-300 mt-5'></div>
-            <div className='w-full flex flex-col items-center lg:flex-row gap-5 lg:justify-between'>
-                <p>@ 2025 Fahish Haritsah. All rights reserved. </p>
-                <div className='flex gap-6 items-center'>
-                    {
-                        socialMediaData.map((item, index) => (
-                            <a href={item.link} key={index} className='flex-col items-center justify-center aspect-square border border-gray-300 p-1 rounded-md cursor-pointer hover:-translate-y-1.5 duration-300 dark:border-white/50 dark:bg-white/20'>
-                                <Image alt={item.name} src={item.icon} className='w-8 h-8' />
-                            </a>
-                        ))
-                    }
-                </div>
-            </div>
+  return (
+    <footer className="border-t border-slate-200 py-10 dark:border-white/10">
+      <div className="section-shell flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
+        <div>
+          <Link href="/" className="text-xl font-bold tracking-[-0.04em]">
+            HARRIS<span className="text-blue-600 dark:text-blue-300">.</span>
+          </Link>
+          <p className="mt-2 text-sm text-slate-500 dark:text-white/45">
+            © {new Date().getFullYear()} {siteConfig.name}
+          </p>
         </div>
-    )
-}
 
-export default Footer
+        <nav aria-label="Footer navigation">
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <Link
+                  href={item.link}
+                  className="text-sm text-slate-500 transition hover:text-blue-700 dark:text-white/45 dark:hover:text-blue-300"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

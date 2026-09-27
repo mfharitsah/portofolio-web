@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import benar1 from '@/assets/meme/benar1.jpeg';
 import benar2 from '@/assets/meme/benar2.jpeg';
@@ -30,7 +30,9 @@ const Game = () => {
 
     ];
 
-    const [currentQuestion, setCurrentQuestion] = useState(null);
+    const [currentQuestion, setCurrentQuestion] = useState(
+        () => questions[Math.floor(Math.random() * questions.length)]
+    );
     const [inputValue, setInputValue] = useState('');
     const [wrongAttempts, setWrongAttempts] = useState(0);
     const [feedbackImage, setFeedbackImage] = useState(null);
@@ -38,10 +40,6 @@ const Game = () => {
     const [showFeedback, setShowFeedback] = useState(false);
     const [isAnswering, setIsAnswering] = useState(false);
     const [showPrizeLink, setShowPrizeLink] = useState(false);
-
-    useEffect(() => {
-        shuffleQuestion();
-    }, []);
 
     const getRandomImage = (imageArray) => {
         const randomIndex = Math.floor(Math.random() * imageArray.length);
@@ -121,7 +119,7 @@ const Game = () => {
                         Interactive Challenge
                     </p>
                     <h1 className='text-4xl md:text-5xl lg:text-6xl font-lora font-bold mb-4'>
-                        Trivia <span className='underline decoration-purple-500'>Game</span>
+                        Trivia <span className='underline decoration-blue-500'>Game</span>
                     </h1>
                     <p className='text-gray-600 dark:text-white/80 max-w-2xl mx-auto font-lora'>
                         Jawab pertanyaan dengan satu kata. Jangan ngasal atau sisa percobaan bakal berkurang!
@@ -176,7 +174,7 @@ const Game = () => {
                                 onKeyPress={handleKeyPress}
                                 placeholder='Ketik jawaban mu di sini...'
                                 disabled={isAnswering}
-                                className='w-full px-6 py-4 border-2 border-gray-300 dark:border-white/20 rounded-xl focus:outline-none focus:border-purple-500 dark:bg-darkTheme/50 dark:text-white dark:placeholder-white/50 text-lg disabled:opacity-50 disabled:cursor-not-allowed duration-300 transition-colors'
+                                className='w-full px-6 py-4 border-2 border-gray-300 dark:border-white/20 rounded-xl focus:outline-none focus:border-blue-500 dark:bg-darkTheme/50 dark:text-white dark:placeholder-white/50 text-lg disabled:opacity-50 disabled:cursor-not-allowed duration-300 transition-colors'
                             />
 
                             <motion.button
@@ -270,7 +268,7 @@ const Game = () => {
                                         href='https://app.gopay.co.id/NF8p/hxjy1dmh'
                                         target='_blank'
                                         rel='noopener noreferrer'
-                                        className='inline-flex items-center gap-2 px-6 py-2 text-base md:text-lg font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 border-b-2 border-purple-500 dark:border-purple-400 hover:border-purple-600 dark:hover:border-purple-300 duration-300 transition-colors'
+                                        className='inline-flex items-center gap-2 border-b-2 border-blue-500 px-6 py-2 text-base font-semibold text-blue-700 transition-colors duration-300 hover:border-blue-600 hover:text-blue-800 dark:border-blue-300 dark:text-blue-300 dark:hover:border-blue-200 dark:hover:text-blue-200 md:text-lg'
                                     >
                                         🎁 Nih hadiah buat kamu. Klik!
                                         <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>

@@ -1,77 +1,67 @@
-import { assets, workData } from '@/assets/assets';
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { motion } from 'motion/react'
+import { getFeaturedProjects } from '@/app/data/projects';
+import { motion } from 'motion/react';
+import Link from 'next/link';
+import ProjectCard from './ProjectCard';
 
-const Works = ({ darkStatus }) => {
-  const [clickedIndex, setClickedIndex] = useState(null);
-  const [seeMore, setSeeMore] = useState(false);
-
-  const toggleClick = (index) => {
-    setClickedIndex(clickedIndex === index ? null : index);
-  };
+const Works = () => {
+  const featuredProjects = getFeaturedProjects().slice(0, 3);
 
   return (
-    <div id='my-works' className='w-full px-[15%] py-10 scroll-mt-32 min-h-screen bg-[url("/footer-bg-color.png")] bg-no-repeat bg-center dark:bg-none bg-[length:90%_auto]'>
-      <motion.p
-        initial={{ y: -20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className='text-center mb-2 text-lg font-lora'>Portfolio</motion.p>
-      <motion.p
-        initial={{ y: -20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className='text-center text-4xl lg:text-5xl font-lora'>My Latest Work</motion.p>
-      <motion.p
-        initial={{ y: 20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className='text-justify lg:text-center text-sm lg:text-base max-w-2xl mx-auto mt-5 mb-12 font-lora'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tenetur quaerat exercitationem explicabo hic
-        saepe illo enim est! Nam quaerat molestiae velit cum exercitationem culpa praesentium modi quibusdam delectus
-        nemo?
-      </motion.p>
+    <section
+      id="work"
+      className="relative scroll-mt-28 overflow-hidden border-y border-blue-100 bg-white/65 py-24 dark:border-blue-300/10 dark:bg-blue-300/[0.025] md:py-32"
+    >
+      <div
+        className="absolute -right-56 top-16 size-[32rem] rounded-full bg-blue-300/20 blur-3xl dark:bg-blue-500/10"
+        aria-hidden="true"
+      />
+      <div className="section-shell relative">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"
+        >
+          <div>
+            <p className="eyebrow">Selected work</p>
+            <h2 className="section-title mt-3">
+              Projects built around real needs.
+            </h2>
+          </div>
+          <p className="section-copy md:max-w-md">
+            Three selected projects across web and mobile engineering. Open a
+            project to explore its context, solution, impact, and visual work.
+          </p>
+        </motion.div>
 
-      <div className={`grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center items-center transition-[max-height] duration-1000 ease-in-out overflow-hidden ${seeMore ? 'max-h-[135rem] md:max-h-[152rem] lg:max-h-[50rem]' : 'max-h-[66rem] md:max-h-[75rem] lg:max-h-[24rem]'}`}>
-        {workData.map((project, index) => (
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: (index / 10) + 0.3 }}
-            key={index}
-            style={{ backgroundImage: `url(${project.bgImage})` }}
-            className="relative bg-cover bg-center w-80 max-w-2xl h-[21rem] md:h-96 md:w-96 rounded-2xl flex flex-col justify-between gap-4 p-5 dark:border-2 dark:border-white/50"
-          >
-            <div
-              className={`absolute w-[80%] bottom-6 right-0 left-0 flex flex-col items-center justify-between rounded-lg mx-auto px-10 bg-white duration-500 ease-out transform transition-all cursor-pointer overflow-hidden ${clickedIndex === index ? 'h-72 lg:h-[21rem] py-4' : 'h-20 pt-3'
-                }`}
-              onClick={() => toggleClick(index)} // Kirim indeks kartu yang diklik
-              onMouseLeave={() => setClickedIndex(null)} // Reset state jika mouse keluar
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {featuredProjects.map((project, index) => (
+            <motion.div
+              key={project.slug}
+              initial={{ y: 28, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
             >
-              <div className='flex flex-col justify-center items-center'>
-                <p className='text-black text-lg md:text-xl font-semibold'>{project.title}</p>
-                <p className='font-semibold text-sm md:text-base text-gray-500 italic'>{project.description}</p>
-                <p className='text-gray-600 mt-4 text-sm lg:text-base text-justify font-semibold'>
-                  {project.full_desc}
-                </p>
-              </div>
+              <ProjectCard project={project} />
+            </motion.div>
+          ))}
+        </div>
 
-              <a href={project.github} className='px-4 py-0.5 text-sm md:text-base md:py-1 md:px-6 border rounded-full border-white bg-black text-white flex items-center gap-2'>
-                see detail
-                <Image src={assets.right_arrow_white} alt='' className='w-3' />
-              </a>
-            </div>
-          </motion.div>
-        ))}
+        <motion.div
+          initial={{ y: 18, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.18 }}
+          className="mt-12 flex justify-center"
+        >
+          <Link href="/projects" className="button-primary">
+            See all projects <span aria-hidden="true">→</span>
+          </Link>
+        </motion.div>
       </div>
-      <div className='flex justify-center mt-10'>
-        <button className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 hover:bg-lightHover dark:hover:bg-darkHover duration-300' onClick={() => setSeeMore(!seeMore)}>
-          {seeMore ? "see less" : "see more"}
-          <Image src={darkStatus ? assets.right_arrow_white : assets.right_arrow_bold} alt='' className={`w-4 duration-300 ${seeMore ? '-rotate-90' : 'rotate-90'}`} />
-        </button>
-      </div>
-    </div>
+    </section>
   );
 };
 

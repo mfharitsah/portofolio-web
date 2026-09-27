@@ -8,13 +8,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        lightHover: '#FCF4FF',
-        darkHover: '#2A004A',
-        darkTheme: '#11001F',
+        lightHover: '#EAF2FF',
+        darkHover: '#0E2A4D',
+        darkTheme: '#050C17',
+        navy: {
+          50: '#F0F6FF',
+          100: '#DBEAFE',
+          300: '#93C5FD',
+          500: '#3B82F6',
+          700: '#163A6B',
+          800: '#0E2A4D',
+          900: '#091D35',
+          950: '#050C17',
+        },
       },
       fontFamily: {
-        lora: ['Lora', 'serif'],
-        outfit: ['Outfit', 'sans-serif'],
+        lora: ['var(--font-lora)', 'serif'],
+        outfit: ['var(--font-outfit)', 'sans-serif'],
       },
       boxShadow: {
         black: '4px 4px 0 #000',
